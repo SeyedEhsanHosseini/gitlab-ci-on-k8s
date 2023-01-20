@@ -1,7 +1,3 @@
-#################################################################################################################
-*****************************************************************************************************************
-#################################################################################################################
-
 
 ## Step 1: (GITLAB-CE DEPLOYMENT)
 
@@ -81,7 +77,7 @@ Save changes.
 
 create a blank project and name it "sample-project"
 
-****************************************************************************************
+
 
 ## Install Gitlab Runner using Helm (recommended)
 
@@ -116,7 +112,7 @@ helm upgrade --install --namespace gitlab-runner --create-namespace gitlab-runne
 ```
 
 
-****************************************************************************************
+
 #### Build stage Environment variables
 
 ##### Navigate to your project's Settings > CI/CD > Environment variables page
@@ -160,12 +156,6 @@ Input your username and password from step 2-2
 ```
 
 
-#################################################################################################################
-*****************************************************************************************************************
-#################################################################################################################
-
-
-
 #### Apply "gitlab-service-account.yaml" 
 
 ```
@@ -190,11 +180,11 @@ kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authori
 ```
 -----BEGIN CERTIFICATE-----
 MIIC/jCCAeagAwIBAgIBADANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwprdWJl
-cm5ldGVzMB4XDTIzMDEwNzEzMjUwN1oXDTMzMDEwNDEzMjUwN1owFTETMBEGA1UE
+zIpwoe0NLaM9Jcv6V3tJPgiTCbM42JVD1pPCYwqxTP1F74JfdG2BWqKNCQbCIJ5I
 AxMKa3ViZXJuZXRlczCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAM2w
-9ffoCUPRzErGLbBcyeWDyuHBV4dfwMtL3M+fSrzhVt6FXzBvZPkfXZm7PXyT/9mp
+9ffoCUPRz6i8nAGVmHTBOSKa0O7LJ21/BT2u3e4O8pRnqwYrf8N6LKt5XhHim7PX
 cX7ianG5rm/Z7mxSnNO35SNQYtWDWd6swkZxcl+8qwNIdp5ziaJ4q4jaTiGB3p9n
-vKxjIIvoJb2sPyHgJ073WDLivQbM6wqZEx8g0qcjkB8wHeV4MJGk213uIKnowUNs
+uH/TJlXYHZluMxtvRjTX4HGq16NjTk/8LzhOccSdlPrNIiBu9D+D0q04DXTWwloRs
 pt5RBPkTKDM3Uavop0IUX+9vn23nz7X6+X9vmmibYKtnS2FEgcXFUWgcu0VqdGlp
 f1CaMGA6i8nAGVmHTBOSKa0O7LJ21/BT2u3e4O8pRnqwYrf8N6LKt5XhHi/9OZHf
 A++U3r0InmWMTOo9xtcCAwEAAaNZMFcwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB
@@ -231,9 +221,7 @@ kubectl -n gitlab-runner create token default
 eyJhbGciOiJSUzI1NiIsImtpZCI6ImtJaXdFR2ppS3ItNkpIU1VtemVuXzY4ek8wR0U4MHV6ZDh5Unp4UnA3Rm8ifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjc0MTk4OTA4LCJpYXQiOjE2NzQxOTUzMDgsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJnaXRsYWItcnVubmVyIiwic2VydmljZWFjY291bnQiOnsibmFtZSI6ImRlZmF1bHQiLCJ1aWQiOiI2NGE1Y2MyMS1iMThkLTRkNTQtYTI2Ny0yZTNiNWRjMDVjOGMifX0sIm5iZiI6MTY3NDE5NTMwOCwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmdpdGxhYi1ydW5uZXI6ZGVmYXVsdCJ9.p8RITKsGW7T12plK33p9Gn7OaxZ0ImBTxDs3yvA-m7UCfRdbNKC27u29XL8oTr7XfMVi21NigpAob_xtnsvqpw_H-bjxjqxsy_uV0TZh0bwEBHC3gFJHQMYcJL1GtrT-C4LhdHULaQ3HlVtcZvxap4owjKRR4HR3EoiDGae36tNtQ1Sisz8CXrpuMUCfsM_X7PxL39FxTaGYdPCrvBwvGR4iKbCNnzHbA_Y6vAOEhInAPNOUPvXFLc0PGYr-hv4dEzu8giG_e7AnzLx4sE09esoWa_ca1zwbydWf0n-tMKlFRVirQm07-WSPc2W9ikoM26iyfYsJ36tqLKy578WixQ
 ```
 
-#############################################################################################
-#############################################################################################
-#############################################################################################
+
 
 ```
 kubectl -n gitlab-runner get pods
