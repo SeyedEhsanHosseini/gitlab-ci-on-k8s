@@ -39,7 +39,7 @@ spec:
         volumeMounts:
           - mountPath: /var/opt/gitlab
             name: data
-      nodeName: node002.cluster.local      
-      volumes:
-        - name: data
-          emptyDir: {}
+        nodeName: node002.cluster.local      
+        volumes:
+          - name: data
+            emptyDir: {}
