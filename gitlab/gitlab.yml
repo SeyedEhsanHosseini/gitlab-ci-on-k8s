@@ -32,7 +32,7 @@ spec:
         image: gitlab/gitlab-ce
         env:
           - name: GITLAB_OMNIBUS_CONFIG
-            value: "external_url 'http://node002.cluster.local/';gitlab_rails['registry_enabled'] = true;gitlab_rails['registry_api_url'] = \"http://172.17.0.2:5000\""
+            value: "external_url 'http://node002.cluster.local/'
         ports:
         - containerPort: 80
           name: http
