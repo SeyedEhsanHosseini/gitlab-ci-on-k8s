@@ -1,0 +1,38 @@
+stages:
+  - build
+  - deploy
+
+variables : 
+  CI_REGISTRY_IMAGE : $CI_REGISTRY_IMAGE
+  CI_REGISTRY_PASSWORD : $CI_REGISTRY_PASSWORD 
+  CI_REGISTRY : $CI_REGISTRY 
+  CI_REGISTRY_USER : $CI_REGISTRY_USER 
+
+default:
+  before_script:
+    - export TAG="${CI_COMMIT_TAG:-latest}" && echo $TAG
+
+build:
+  stage: "build"
+  image:
+    name: "docker.io/noenv/buildah:latest"
+  only:
+    - "tags"
+    - "main"
+  script:
+    - "buildah bud -f Dockerfile -t ${CI_REGISTRY_IMAGE}:${TAG} ."
+    - "echo $CI_REGISTRY_PASSWORD | buildah login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY"
+    - "buildah push ${CI_REGISTRY_IMAGE}:${TAG}"
+
+
+deploy:
+  stage: "deploy"
+  image: "docker.io/dtzar/helm-kubectl"
+  script:
+    - kubectl config set-cluster k8s --server="${SERVER}" --insecure-skip-tls-verify
+    - kubectl config set-cluster k8s --certificate-authority=certificate-authority-data.txt --embed-certs=true
+    - kubectl config set-credentials gitlab --token="${USER_TOKEN}"
+    - kubectl config set-context default --cluster=k8s --user=gitlab
+    - kubectl config use-context default
+    - sed -i "s/<VERSION>/${TAG}/g" deployment.yaml
+    - kubectl apply -f deployment.yaml
