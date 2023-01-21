@@ -245,4 +245,4 @@ kubectl -n gitlab-runner describe pod project-deployment-85db7fdfb5-mplf9 | grep
 Node:             node004.cluster.local/192.168.56.11
 ```
 
-#### Open http://node004.cluster.local:30090 OR http://192.168.56.11L30090 in your browser
+#### Open http://node004.cluster.local:30090 OR http://192.168.56.11:30090 in your browser
