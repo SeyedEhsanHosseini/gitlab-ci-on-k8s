@@ -1,5 +1,5 @@
 
-## Step 1: (GITLAB-CE DEPLOYMENT)
+## Step 1: GITLAB-CE DEPLOYMENT
 
 #### gitlab-deployment.yml:
 
@@ -64,7 +64,7 @@ Password: <password-from-previous-step>
 
 ###### On gitlab UI:
 
-On the top bar, select Main menu > Admin.
+> On the top bar, select Main menu > Admin.
 On the left sidebar, select Settings > Network.
 Expand Outbound requests.
 Select the Allow requests to the local network from web hooks and services checkbox.
@@ -79,7 +79,7 @@ create a blank project and name it "sample-project"
 
 
 
-## Install Gitlab Runner using Helm (recommended)
+## Step 2: Install Gitlab Runner using Helm (recommended)
 
 From a terminal, connect to your cluster and run this command. The token is included in the command.
 
@@ -111,13 +111,13 @@ kubectl label nodes node003.cluster.local role=gitlabrunner
 helm upgrade --install --namespace gitlab-runner --create-namespace gitlab-runner -f gitlab-runner/values.yaml gitlab/gitlab-runner --set nodeSelector.role=gitlabrunner
 ```
 
+## Step 3: Preparing CI/CD environment
 
+### Build stage Environment variables
 
-#### Build stage Environment variables
-
-##### Navigate to your project's Settings > CI/CD > Environment variables page
-##### and add the following ones (replace them with your current values, of course):
-##### !!! Only set this variables if you will upload the image to DockerHub !!!
+> Navigate to your project's Settings > CI/CD > Environment variables page
+and add the following ones (replace them with your current values, of course):
+!!! Only set this variables if you will upload the image to DockerHub !!!
 
 ```
 CI_REGISTRY_USER: dockerhubuser (DockerHub Username)
@@ -162,11 +162,11 @@ Input your username and password from step 2-2
 kubectl apply -f gitlab-service-account.yaml
 
 ```
+### Deploy stage Environment variables:
 
-#### Go to Settings -> CI / CD -> Environment variables:
-
-#### Navigate to your project's Settings > CI/CD > Environment variables page
-#### and add the following ones (replace them with your current values, of course):
+> Go to Settings -> CI / CD -> Environment variables:
+Navigate to your project's Settings > CI/CD > Environment variables page
+and add the following ones (replace them with your current values, of course):
 
 
 ###### 1: CERTIFICATE_AUTHORITY_DATA: This is the CA configuration for the Kubernetes cluster 
@@ -221,7 +221,11 @@ kubectl -n gitlab-runner create token default
 eyJhbGciOiJSUzI1NiIsImtpZCI6ImtJaXdFR2ppS3ItNkpIU1VtemVuXzY4ek8wR0U4MHV6ZDh5Unp4UnA3Rm8ifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoxNjc0MTk4OTA4LCJpYXQiOjE2NzQxOTUzMDgsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJnaXRsYWItcnVubmVyIiwic2VydmljZWFjY291bnQiOnsibmFtZSI6ImRlZmF1bHQiLCJ1aWQiOiI2NGE1Y2MyMS1iMThkLTRkNTQtYTI2Ny0yZTNiNWRjMDVjOGMifX0sIm5iZiI6MTY3NDE5NTMwOCwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmdpdGxhYi1ydW5uZXI6ZGVmYXVsdCJ9.p8RITKsGW7T12plK33p9Gn7OaxZ0ImBTxDs3yvA-m7UCfRdbNKC27u29XL8oTr7XfMVi21NigpAob_xtnsvqpw_H-bjxjqxsy_uV0TZh0bwEBHC3gFJHQMYcJL1GtrT-C4LhdHULaQ3HlVtcZvxap4owjKRR4HR3EoiDGae36tNtQ1Sisz8CXrpuMUCfsM_X7PxL39FxTaGYdPCrvBwvGR4iKbCNnzHbA_Y6vAOEhInAPNOUPvXFLc0PGYr-hv4dEzu8giG_e7AnzLx4sE09esoWa_ca1zwbydWf0n-tMKlFRVirQm07-WSPc2W9ikoM26iyfYsJ36tqLKy578WixQ
 ```
 
+## Step 4: Run your pipline and see the result
 
+### Make a commit to the repository to trigger pipleine
+
+#### After both stages finished successfully you can check the result:
 
 ```
 kubectl -n gitlab-runner get pods
@@ -241,3 +245,4 @@ kubectl -n gitlab-runner describe pod project-deployment-85db7fdfb5-mplf9 | grep
 Node:             node004.cluster.local/192.168.56.11
 ```
 
+#### Open https://node004.cluster.local:30090 OR 192.168.56.11L30090 in your browser
