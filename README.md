@@ -81,12 +81,12 @@ create a blank project and name it "sample-project"
 
 ## Step 2: Install Gitlab Runner using Helm (recommended)
 
-From a terminal, connect to your cluster and run this command. The token is included in the command.
+#### From a terminal, connect to your cluster and run this command to install helm :
 
 ```
 sudo snap install helm --classic
 ```
-
+#### Then add offical gitlab hem repository :
 ```
 helm repo add gitlab https://charts.gitlab.io
 ```
