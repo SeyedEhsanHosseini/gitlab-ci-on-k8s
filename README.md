@@ -164,10 +164,6 @@ kubectl apply -f gitlab-service-account.yaml
 ```
 ### Deploy stage Environment variables:
 
-> Go to Settings -> CI / CD -> Environment variables:
-Navigate to your project's Settings > CI/CD > Environment variables page
-and add the following ones (replace them with your current values, of course):
-
 
 ###### 1: CERTIFICATE_AUTHORITY_DATA: This is the CA configuration for the Kubernetes cluster 
 
@@ -199,7 +195,8 @@ TXbBIRIPmellf56QA4IrvM+x9UtUO8lgM4XNN3jMIDdAXjnWqW0+P4vQs3mbo/Ri
 6C0=
 -----END CERTIFICATE-----
 ```
-
+> Go to Settings -> CI / CD -> Environment variables:
+and add the following ones (replace them with your current values, of course):
 ###### 2: SERVER. This is the endpoint to the Kubernetes API for our cluster. 
 
 ###### Get it's value by running:
