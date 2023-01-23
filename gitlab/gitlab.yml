@@ -32,7 +32,7 @@ spec:
         image: gitlab/gitlab-ce
         env:
           - name: GITLAB_OMNIBUS_CONFIG
-            value: "external_url 'http://node002.cluster.local/'
+            value: "external_url 'http://node002.cluster.local/'"
         ports:
         - containerPort: 80
           name: http
