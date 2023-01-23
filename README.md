@@ -171,11 +171,11 @@ kubectl apply -f gitlab-service-account.yaml
 
 ###### 1: CERTIFICATE_AUTHORITY_DATA: This is the CA configuration for the Kubernetes cluster 
 
-###### *** Copy and paste this in "certificate-authority-data.txt" file ***
+###### *** Paste it in "certificate-authority-data.crt" file ***
 
 ###### Get it's value by running:
 ```
-kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}' |base64  -d
+kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}' |base64  -d > certificate-authority-data.crt
 ```
 ```
 -----BEGIN CERTIFICATE-----
