@@ -167,34 +167,13 @@ kubectl apply -f gitlab-service-account.yaml
 
 ###### 1: CERTIFICATE_AUTHORITY_DATA: This is the CA configuration for the Kubernetes cluster 
 
-###### *** Paste it in "certificate-authority-data.crt" file ***
+###### *** Create "certificate-authority-data.crt" file ***
 
-###### Get it's value by running:
+###### by running:
 ```
 kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}' |base64  -d > certificate-authority-data.crt
 ```
-###### Output:
-```
------BEGIN CERTIFICATE-----
-MIIC/jCCAeagAwIBAgIBADANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwprdWJl
-zIpwoe0NLaM9Jcv6V3tJPgiTCbM42JVD1pPCYwqxTP1F74JfdG2BWqKNCQbCIJ5I
-AxMKa3ViZXJuZXRlczCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAM2w
-9ffoCUPRz6i8nAGVmHTBOSKa0O7LJ21/BT2u3e4O8pRnqwYrf8N6LKt5XhHim7PX
-cX7ianG5rm/Z7mxSnNO35SNQYtWDWd6swkZxcl+8qwNIdp5ziaJ4q4jaTiGB3p9n
-uH/TJlXYHZluMxtvRjTX4HGq16NjTk/8LzhOccSdlPrNIiBu9D+D0q04DXTWwloRs
-pt5RBPkTKDM3Uavop0IUX+9vn23nz7X6+X9vmmibYKtnS2FEgcXFUWgcu0VqdGlp
-f1CaMGA6i8nAGVmHTBOSKa0O7LJ21/BT2u3e4O8pRnqwYrf8N6LKt5XhHi/9OZHf
-A++U3r0InmWMTOo9xtcCAwEAAaNZMFcwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB
-/wQFMAMBAf8wHQYDVR0OBBYEFMJ07LD7D5E8Q/H1oiu+Sojqa2nTMBUGA1UdEQQO
-MAyCCmt1YmVybmV0ZXMwDQYJKoZIhvcNAQELBQADggEBADt1P49fXp+ry1keIH1L
-ZNdPLTYOBZj/JmFKKV3FQyb6H1i1vMoQ7D7fnZXw0wFQ5Mze9VWw3wuu/vmsUvBA
-zIpwoe0NLaM9Jcv6V3tJPgiTCbM42JVD1pPCYwqxTP1F74JfdG2BWqKNCQbCIJ5I
-o+r7SNLokTQB+Uc48/BDL6Hcn5wJCXbEC91OlBcqmMNCXa7ch+lQJxi6Wuy5cmLq
-uH/TJlXYHZluMxtvRjTX4HGq16NjTk/8LzhOccSdlPrNIiBu9D+D0q04DXTWwloR
-TXbBIRIPmellf56QA4IrvM+x9UtUO8lgM4XNN3jMIDdAXjnWqW0+P4vQs3mbo/Ri
-6C0=
------END CERTIFICATE-----
-```
+
 > Go to Settings -> CI / CD -> Environment variables:
 and add the following ones (replace them with your current values, of course):
 ###### 2: SERVER. This is the endpoint to the Kubernetes API for our cluster. 
